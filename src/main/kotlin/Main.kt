@@ -9,7 +9,6 @@ fun main() {
     val fileFinder = BuscadorArchivos()
     val (archivoXML, archivoCSV, archivoJSON) = fileFinder.buscarArchivos()
 
-    // Initialize read/write objects
     val xmlReadWrite = XMLReadWrite(archivoXML)
     val csvReadWrite = CSVReadWrite(archivoCSV)
     val jsonReadWrite = JSONReadWrite(archivoJSON)
