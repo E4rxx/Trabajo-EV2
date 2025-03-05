@@ -1,10 +1,8 @@
 package prog.trbe2.csvstuff
 
 import java.io.File
-import prog.trbe2.csvstuff.Personal
 
-class CSVReadWrite {
-    val archivoCSV = File("src/main/resources/personal.csv")
+class CSVReadWrite(private val archivoCSV: File) {
     fun mainReadCSV(archivoCSV: File) {
         existeCSV(archivoCSV)
         legibleCSV(archivoCSV)

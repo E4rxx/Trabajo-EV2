@@ -1,9 +1,9 @@
 package prog.trbe2.xmlstuff
 import com.fasterxml.jackson.dataformat.xml.XmlMapper
 import java.io.File
-//Código en sí
-class XMLReadWrite{
-    val archivoXML = File("src/main/resources/personal.xml")
+
+
+class XMLReadWrite(private val archivoXML: File) {
     fun mainReadXML(archivoXML: File) {
         existeXML(archivoXML)
         legibleXML(archivoXML)
