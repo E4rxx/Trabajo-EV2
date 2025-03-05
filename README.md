@@ -1,4 +1,4 @@
-# Trabajo Evalueción 2
+# Trabajo Evaluación 2
  Repositorio para el trabajo de la segunda evaluación (lo que hemos podido eh)
 
  ## Cómo descargarlo
