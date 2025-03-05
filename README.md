@@ -3,7 +3,7 @@
 
  ## Cómo descargarlo
 
- Clona el repositorio. Podrás ver lo que hay. También puedes descargarte el jar y los archivos .csv, .json y .xml en Releases
+ Clona el repositorio. Podrás ver lo que hay. También puedes descargarte el jar y los archivos .csv, .json y .xml además de los demás recursos en Releases
 
  ## Cómo Ejecutarlo
  
