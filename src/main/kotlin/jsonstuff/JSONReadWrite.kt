@@ -1,13 +1,21 @@
 package prog.trbe2.jsonstuff
 
 import kotlinx.serialization.json.Json
+import prog.trbe2.DTO.Personal
 import java.io.File
 
 class JSONReadWrite(private val archivoJSON: File) {
-    fun mainReadJSON(archivoJson: File) {
-        existeJSON(archivoJSON)
-        legibleJSON(archivoJSON)
+    //la funcion principal de esta clase
+    //si sale bien devuelve el archivo
+    fun mainReadJSON(archivoJson: File) : File {
+        if (existeJSON(archivoJSON) && legibleJSON(archivoJSON)) {
+            return archivoJSON
+        } else {
+            throw IllegalArgumentException("⚠️ Error en la verificación del archivo JSON")
+        }
     }
+
+    //esto comprueba si esta o no
     fun existeJSON(archivoJSON: File): Boolean {
         var resultFind: Boolean = false
         print("🔄 Buscando el archivo JSON ")
@@ -23,6 +31,8 @@ class JSONReadWrite(private val archivoJSON: File) {
         }
         return resultFind
     }
+
+    //esto comprueba si es legible o no
     fun legibleJSON(archivoJSON: File): Boolean {
         var resultFind: Boolean = false
         print("🔄 Comprobando el archivo JSON ")
@@ -38,15 +48,10 @@ class JSONReadWrite(private val archivoJSON: File) {
         }
         return resultFind
     }
-    fun analizadorJSON(archivoJSON: File) {
-        val json = Json { ignoreUnknownKeys = true }
-        val personalList: List<Personal> = json.decodeFromString(archivoJSON.readText())
-        personalList.forEach { personal ->
-            println(formateadorJSON(personal))
-        }
-    }
 
-    fun formateadorJSON(personal: Personal): String {
-        return "Personal(id=${personal.id}, tipo=${personal.rol}, nombre=${personal.nombre}, apellidos=${personal.apellidos}, fechaNacimiento=${personal.fecha_nacimiento}, fechaIncorporacion=${personal.fecha_incorporacion}, salario=${personal.salario}, pais=${personal.pais}, especialidad=${personal.especialidad}, posicion=${personal.posicion}, dorsal=${personal.dorsal}, altura=${personal.altura}, peso=${personal.peso}, goles=${personal.goles}, partidosJugados=${personal.partidos_jugados})"
+    fun analizadorJSON(archivoJSON: File): List<Personal> {
+        val jsonString = archivoJSON.readText()
+        val json = Json { ignoreUnknownKeys = true }
+        return json.decodeFromString(jsonString)
     }
 }

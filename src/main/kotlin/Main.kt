@@ -1,26 +1,24 @@
 package prog.trbe2
 
-import prog.trbe2.xmlstuff.XMLReadWrite
-import prog.trbe2.csvstuff.CSVReadWrite
-import prog.trbe2.jsonstuff.JSONReadWrite
-import prog.trbe2.filestuff.BuscadorArchivos
+import prog.trbe2.DisplayStuff.DisplayCLass
+import prog.trbe2.filestuff.FileFusioner
+
 
 fun main() {
-    val fileFinder = BuscadorArchivos()
-    val (archivoXML, archivoCSV, archivoJSON) = fileFinder.buscarArchivos()
+    println("Hello, world!")
+    val display = DisplayCLass()
+    val fileFusioner = FileFusioner()
 
-    val xmlReadWrite = XMLReadWrite(archivoXML)
-    val csvReadWrite = CSVReadWrite(archivoCSV)
-    val jsonReadWrite = JSONReadWrite(archivoJSON)
-
-    xmlReadWrite.mainReadXML(archivoXML)
-    csvReadWrite.mainReadCSV(archivoCSV)
-    jsonReadWrite.mainReadJSON(archivoJSON)
-
+    println()
     println("CSV")
-    csvReadWrite.analizadorCSV(archivoCSV)
+    display.displayCSV()
+    println()
     println("JSON")
-    jsonReadWrite.analizadorJSON(archivoJSON)
+    display.displayJSON()
+    println()
     println("XML")
-    xmlReadWrite.analizadorXML(archivoXML)
+    display.displayXML()
+    println()
+    println("Fusion")
+    fileFusioner.mainFileFusioner()
 }
