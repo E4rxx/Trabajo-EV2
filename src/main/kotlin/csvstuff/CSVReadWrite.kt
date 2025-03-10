@@ -1,13 +1,21 @@
 package prog.trbe2.csvstuff
 
+import prog.trbe2.DTO.Personal
 import java.io.File
 
-class CSVReadWrite(private val archivoCSV: File) {
-    fun mainReadCSV(archivoCSV: File) {
-        existeCSV(archivoCSV)
-        legibleCSV(archivoCSV)
+class CSVReadWrite(val archivoCSV: File) {
+    //la funcion principal de esta clase
+    //si sale bien devuelve el archivo
+    fun mainReadCSV(archivoCSV: File): File {
+        if (existeCSV(archivoCSV) && legibleCSV(archivoCSV)) {
+            return archivoCSV
+        } else {
+            throw IllegalArgumentException("⚠️ Error en la verificación del archivo CSV")
+        }
     }
-    fun existeCSV(archivoCSV: File): Boolean {
+
+    //esto comprueba si esta o no
+    private fun existeCSV(archivoCSV: File): Boolean {
         var resultFind: Boolean = false
         print("🔄 Buscando el archivo CSV ")
         when {
@@ -22,7 +30,9 @@ class CSVReadWrite(private val archivoCSV: File) {
         }
         return resultFind
     }
-    fun legibleCSV(archivoCSV: File): Boolean {
+
+    //esto comprueba si es legible o no
+    private fun legibleCSV(archivoCSV: File): Boolean {
         var resultFind: Boolean = false
         print("🔄 Comprobando el archivo CSV ")
         when {
@@ -37,13 +47,15 @@ class CSVReadWrite(private val archivoCSV: File) {
         }
         return resultFind
     }
-    fun analizadorCSV(archivoCSV: File) {
+
+    //analizar el archivo CSV
+    fun analizadorCSV(archivoCSV: File): List<Personal> {
         val lectorTextoCSV = archivoCSV.readLines().drop(1)
-        val personalList = lectorTextoCSV.map { convertirLineaACSV(it) }
-        personalList.forEach { println(it) }
+        return lectorTextoCSV.map { convertirLineaACSV(it) }
     }
 
-    fun convertirLineaACSV(linea: String): Personal {
+    //convertir la linea a CSV
+    private fun convertirLineaACSV(linea: String): Personal {
         val campos = linea.split(",")
         return Personal(
             id = campos[0].toInt(),
@@ -53,7 +65,7 @@ class CSVReadWrite(private val archivoCSV: File) {
             fechaIncorporacion = campos[4],
             salario = campos[5].toDouble(),
             pais = campos[6],
-            tipo = campos[7],
+            rol = campos[7],
             especialidad = campos[8].ifEmpty { null },
             posicion = campos[9].ifEmpty { null },
             dorsal = campos[10].toIntOrNull(),

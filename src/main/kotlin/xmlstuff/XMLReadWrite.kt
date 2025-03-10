@@ -1,20 +1,24 @@
 package prog.trbe2.xmlstuff
+
 import com.fasterxml.jackson.dataformat.xml.XmlMapper
+import prog.trbe2.DTO.Personal
+import prog.trbe2.DTO.PersonalXML
 import java.io.File
 
 
 class XMLReadWrite(private val archivoXML: File) {
-    fun mainReadXML(archivoXML: File) {
-        existeXML(archivoXML)
-        legibleXML(archivoXML)
+    //la funcion principal de esta clase
+    //si sale bien devuelve el archivo
+    fun mainReadXML(archivoXML: File) : File {
+        if (existeXML(archivoXML) && legibleXML(archivoXML)) {
+            return archivoXML
+        } else {
+            throw IllegalArgumentException("⚠️ Error en la verificación del archivo XML")
+        }
     }
-    fun analizadorXML(archivoXML: File) {
-        val xmlMapper = XmlMapper()
-        val lectorTextoXML = archivoXML.readText()
-        val dtoXML = xmlMapper.readValue(lectorTextoXML, EquipoDTO::class.java)
-        dtoXML.personal.forEach { println(it) }
-    }
-    fun existeXML(archivoXML: File): Boolean {
+
+    //esto comprueba si esta o no
+    private fun existeXML(archivoXML: File): Boolean {
         var resultFind: Boolean = false
         print("🔄 Buscando el archivo XML ")
         when {
@@ -29,7 +33,9 @@ class XMLReadWrite(private val archivoXML: File) {
         }
         return resultFind
     }
-    fun legibleXML(archivoXML: File): Boolean {
+
+    //esto comprueba si es legible o no
+    private fun legibleXML(archivoXML: File): Boolean {
         var resultFind: Boolean = false
         print("🔄 Comprobando el archivo XML ")
         when {
@@ -43,5 +49,12 @@ class XMLReadWrite(private val archivoXML: File) {
             }
         }
         return resultFind
+    }
+
+    //analizar el archivo XML
+    fun analizadorXML(archivoXML: File): List<PersonalXML> {
+        val xmlMapper = XmlMapper()
+        val personales = xmlMapper.readValue(archivoXML, Array<PersonalXML>::class.java)
+        return personales.toList()
     }
 }

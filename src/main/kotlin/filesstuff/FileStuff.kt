@@ -5,14 +5,20 @@ import java.io.File
 class BuscadorArchivos {
     private val currentDir = System.getProperty("user.dir")
 
-    fun buscarArchivos(): Triple<File, File, File> {
+    fun buscarXML(): File {
         val archivoXML = File(currentDir, "personal.xml")
-        val archivoCSV = File(currentDir, "personal.csv")
-        val archivoJSON = File(currentDir, "personal.json")
-        return Triple(archivoXML, archivoCSV, archivoJSON)
+        return archivoXML
     }
-
-    fun buscarArchivosXML(): File = File(currentDir, "personal.xml")
-    fun buscarArchivosCSV(): File = File(currentDir, "personal.csv")
-    fun findbuscarArchivosJSON(): File = File(currentDir, "personal.json")
+    fun buscarCSV(): File {
+        val archivoCSV = File(currentDir, "personal.csv")
+        return archivoCSV
+    }
+    fun buscarJSON(): File {
+        val archivoJSON = File(currentDir, "personal.json")
+        return archivoJSON
+    }
+    fun buscarFusion(): File {
+        val fileFusion = File(currentDir, "fileFusion.csv")
+        return fileFusion
+    }
 }
