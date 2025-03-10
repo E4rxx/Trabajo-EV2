@@ -8,3 +8,7 @@
  ## Cómo Ejecutarlo
  
  En la pestaña de Releases encontrarás las instrucciones.
+
+## Compatibilidad
+
+En teoría es compatible con la  ultima version de java. Si por algun casual no funciona, prueba a actualizar a JDK 23 (Es lo que tiene programar en Apple Silicon, sorry)
