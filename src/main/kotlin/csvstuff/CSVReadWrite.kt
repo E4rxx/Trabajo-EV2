@@ -38,6 +38,7 @@ class CSVReadWrite(val archivoCSV: File) {
         when {
             archivoCSV.canRead() -> {
                 println("✅ Archivo listo para usar!")
+                println()
                 resultFind = true
             }
             !archivoCSV.canRead() -> {

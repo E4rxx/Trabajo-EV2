@@ -18,7 +18,7 @@ class FileFusioner {
     val xmlReadWrite = XMLReadWrite(archivoXML)
     val csvReadWrite = CSVReadWrite(archivoCSV)
     val jsonReadWrite = JSONReadWrite(archivoJSON)
-    val fusionReadWrite = FusionReadWrite(archivoFusion)
+    val fusionReadWrite = FusionReadWrite()
 
     fun mainFileFusioner() : File {
         val fusionFile = fusionReadWrite.mainReadFusion(archivoFusion)
