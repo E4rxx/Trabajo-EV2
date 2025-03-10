@@ -39,6 +39,7 @@ class JSONReadWrite(private val archivoJSON: File) {
         when {
             archivoJSON.canRead() -> {
                 println("✅ Archivo listo para usar!")
+                println()
                 resultFind = true
             }
             !archivoJSON.canRead() -> {

@@ -41,6 +41,7 @@ class XMLReadWrite(private val archivoXML: File) {
         when {
             archivoXML.canRead() -> {
                 println("✅ Archivo listo para usar!")
+                println()
                 resultFind = true
             }
             !archivoXML.canRead() -> {

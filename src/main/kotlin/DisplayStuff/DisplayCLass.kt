@@ -1,6 +1,7 @@
 package prog.trbe2.DisplayStuff
 
 import prog.trbe2.csvstuff.CSVReadWrite
+import prog.trbe2.csvstuff.FusionReadWrite
 import prog.trbe2.jsonstuff.JSONReadWrite
 import prog.trbe2.xmlstuff.XMLReadWrite
 import prog.trbe2.filestuff.BuscadorArchivos
@@ -21,6 +22,7 @@ class DisplayCLass {
 
     fun displayCSV() {
         csvReadWrite.mainReadCSV(archivoCSV)
+        println("🖨️ Imprimiendo el archivo CSV")
         personalListCSV.forEach { personal ->
             println("Personal(id=${personal.id}, " +
                     "nombre=${personal.nombre ?: "N/A"}, " +
@@ -42,6 +44,7 @@ class DisplayCLass {
 
     fun displayJSON() {
         jsonReadWrite.mainReadJSON(archivoJSON)
+        println("🖨️ Imprimiendo el archivo JSON")
         personalListJSON.forEach { personal ->
             println("Personal(id=${personal.id}, " +
                     "nombre=${personal.nombre ?: "N/A"}, " +
@@ -63,7 +66,33 @@ class DisplayCLass {
 
     fun displayXML() {
         xmlReadWrite.mainReadXML(archivoXML)
+        println("🖨️ Impriminedo el archivo XML")
         personalListXML.forEach { personal ->
+            println("Personal(id=${personal.id}, " +
+                    "nombre=${personal.nombre ?: "N/A"}, " +
+                    "apellidos=${personal.apellidos}, " +
+                    "fechaNacimiento=${personal.fechaNacimiento ?: "N/A"}, " +
+                    "fechaIncorporacion=${personal.fechaIncorporacion ?: "N/A"}, " +
+                    "salario=${personal.salario ?: "N/A"}, " +
+                    "pais=${personal.pais}, " +
+                    "rol=${personal.rol}, " +
+                    "especialidad=${personal.especialidad ?: "N/A"}, " +
+                    "posicion=${personal.posicion ?: "N/A"}, " +
+                    "dorsal=${personal.dorsal ?: "N/A"}, " +
+                    "altura=${personal.altura ?: "N/A"}, " +
+                    "peso=${personal.peso ?: "N/A"}, " +
+                    "goles=${personal.goles ?: "N/A"}, " +
+                    "partidosJugados=${personal.partidosJugados ?: "N/A"})")
+        }
+    }
+
+    fun displayFusion() {
+        val archivoFusion = fileFinder.buscarFusion()
+        val fusionReadWrite = FusionReadWrite()
+        fusionReadWrite.mainReadNewFusion(archivoFusion)
+        val personalListFusion = csvReadWrite.analizadorCSV(archivoFusion)
+        println("🖨️ Imprimiendo el archivo fusionado")
+        personalListFusion.forEach { personal ->
             println("Personal(id=${personal.id}, " +
                     "nombre=${personal.nombre ?: "N/A"}, " +
                     "apellidos=${personal.apellidos}, " +
